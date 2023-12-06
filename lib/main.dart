@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/widgets/postTile.dart';
-import 'widgets/postTile.dart';
+import 'widgets/userIcon.dart';
 import 'utility/categorySlider.dart';
-import 'model/post.dart';
-import 'routes/landing_routes/profile.dart';
+import 'package:flutter_portfolio/widgets/proposals/proposalTile.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'utility/introManger.dart';
 
@@ -13,7 +11,6 @@ import 'package:http/http.dart' as http;
 void main() {
   runApp(const DappVoteClub());
 }
-
 
 class DappVoteClub extends StatelessWidget {
   const DappVoteClub({super.key});
@@ -103,20 +100,8 @@ class LandingPage extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   color: Theme.of(context).colorScheme.onSecondary,
                 )),
-        actions: <Widget>[
-          IconButton(
-            icon: Container(
-                padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                child: const Icon(Icons.account_circle, color: Colors.black)),
-            onPressed: () {
-              // Navigate to the profile page
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const UserProfilePage()),
-              );
-            },
-          ),
+        actions: const <Widget>[
+          CustomUserIcon(),
         ],
         backgroundColor: Theme.of(context).colorScheme.secondary,
       ),
@@ -135,20 +120,21 @@ class LandingPage extends StatelessWidget {
           children: <Widget>[
             const CategorySlider(),
             Expanded(
-                child: ListView.builder(
-              itemCount: samplePosts.length,
-              itemBuilder: (context, index) {
-                final post = samplePosts[index];
-                return PostTile(
-                  postName: post.postTitle,
-                  details: post.details,
-                  isSwitchOn: post.isSwitchOn,
-                  onSwitchChanged: (bool newValue) {
-                    post.isSwitchOn = newValue;
-                  },
-                );
-              },
-            )),
+              child: ListView.builder(
+                itemCount: 10, // Number of ProposalTile widgets you want
+                itemBuilder: (context, index) {
+                  return ProposalTile(
+                    proposalAuthor: 'nate stevens',
+                    proposalName: "Proposal ${index + 1}",
+                    proposalDetails: "Details for Proposal ${index + 1}",
+                    isSwitchOn: false, // Initial switch state
+                    onSwitchChanged: (bool newValue) {
+                      // Handle switch state change
+                    },
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
