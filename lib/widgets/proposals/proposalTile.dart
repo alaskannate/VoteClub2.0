@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import '/widgets/userIcon.dart';
 import 'voteSwitch.dart';
 
@@ -24,6 +25,32 @@ class ProposalTile extends StatefulWidget {
 }
 
 class _ProposalTileState extends State<ProposalTile> {
+=======
+
+class PostTile extends StatefulWidget {
+  final String postName;
+  final String details;
+  final bool isSwitchOn;
+  final ValueChanged<bool> onSwitchChanged;
+
+  const PostTile({
+    super.key,
+    required this.postName,
+    required this.details,
+    required this.isSwitchOn,
+    required this.onSwitchChanged,
+  });
+
+  @override
+  State<PostTile> createState() {
+    return _PostTileState();
+  }
+  // @override
+  // _PostTileState createState() => _PostTileState();
+}
+
+class _PostTileState extends State<PostTile> {
+>>>>>>> dev
   late bool switchState;
 
   @override
@@ -36,8 +63,13 @@ class _ProposalTileState extends State<ProposalTile> {
     setState(() {
       switchState = newValue;
     });
+<<<<<<< HEAD
     // widget.onSwitchChanged(
     //     newValue); // Ensure this callback is correctly implemented
+=======
+    widget.onSwitchChanged(
+        newValue); // Ensure this callback is correctly implemented
+>>>>>>> dev
   }
 
   @override
@@ -45,13 +77,22 @@ class _ProposalTileState extends State<ProposalTile> {
     return Container(
       margin: const EdgeInsets.all(8),
       child: Card(
+<<<<<<< HEAD
         // Use the custom card shape here
+=======
+        shape: CustomCardShape(
+            cutHeight: 185, cutWidth: 105), // Use the custom card shape here
+>>>>>>> dev
         surfaceTintColor: Colors.transparent,
         elevation: 4.0,
         child: Stack(
           children: [
             Container(
+<<<<<<< HEAD
               width: 500,
+=======
+              width: 300,
+>>>>>>> dev
               height: 300,
               padding: const EdgeInsets.all(16),
               decoration: const BoxDecoration(
@@ -63,6 +104,7 @@ class _ProposalTileState extends State<ProposalTile> {
                   // Bottom right is not rounded due to the cutout
                 ),
               ),
+<<<<<<< HEAD
               child: Row(
                 children: [
                   SizedBox(
@@ -82,8 +124,48 @@ class _ProposalTileState extends State<ProposalTile> {
                       ],
                     ),
                   ),
+<<<<<<<< HEAD:lib/widgets/proposals/proposalTile.dart
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+========
+=======
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.postName,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Text(widget.details),
+                    ),
+                  ),
+>>>>>>> dev
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: 15.0, // Align with the cutout
+              right: 20.0, // Align with the cutout
+              child: Material(
+                elevation: 6,
+                borderRadius: BorderRadius.circular(10),
+<<<<<<< HEAD
+                child: Container( 
+=======
+                child: Container(
+>>>>>>> dev
+                  padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+                  decoration: BoxDecoration(
+                    color: Colors.transparent ,
+                    border: Border.all( 
+                        color: const Color.fromARGB(82, 0, 0, 0), width: 1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+<<<<<<< HEAD
+>>>>>>>> dev:lib/widgets/postTile.dart
                     children: [
                       const CustomUserIcon(),
                       Positioned(
@@ -98,6 +180,26 @@ class _ProposalTileState extends State<ProposalTile> {
                     ],
                   )
                 ],
+=======
+                    children: [
+                      const Text(
+                        "Cast Value:",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 10),
+                      ),
+                      const Text("Yes"),
+                      RotatedBox(
+                        quarterTurns: 3,
+                        child: Switch(
+                          value: switchState,
+                          onChanged: _handleSwitchChanged,
+                        ),
+                      ),
+                      const Text('No'),
+                    ],
+                  ),
+                ),
+>>>>>>> dev
               ),
             ),
           ],
