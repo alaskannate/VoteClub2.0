@@ -84,7 +84,7 @@ class _PostTileState extends State<PostTile> {
               child: Material(
                 elevation: 6,
                 borderRadius: BorderRadius.circular(10),
-                child: Container(
+                child: Container( 
                   padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
                   decoration: BoxDecoration(
                     color: Colors.transparent ,
