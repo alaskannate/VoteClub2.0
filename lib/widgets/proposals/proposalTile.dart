@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
+import '/widgets/userIcon.dart';
+import 'voteSwitch.dart';
 
-class PostTile extends StatefulWidget {
-  final String postName;
-  final String details;
+class ProposalTile extends StatefulWidget {
+  final String proposalAuthor;
+  final String proposalName;
+  final String proposalDetails;
   final bool isSwitchOn;
-  final ValueChanged<bool> onSwitchChanged;
+  // final ValueChanged<bool> onSwitchChanged;
 
-  const PostTile({
+  const ProposalTile({
     super.key,
-    required this.postName,
-    required this.details,
-    required this.isSwitchOn,
-    required this.onSwitchChanged,
+    required this.proposalAuthor,
+    required this.proposalName,
+    required this.proposalDetails,
+    this.isSwitchOn = false,
+    required Null Function(bool newValue) onSwitchChanged,
+    // required this.onSwitchChanged,
   });
 
   @override
-  State<PostTile> createState() {
-    return _PostTileState();
-  }
-  // @override
-  // _PostTileState createState() => _PostTileState();
+  _ProposalTileState createState() => _ProposalTileState();
 }
 
-class _PostTileState extends State<PostTile> {
+class _ProposalTileState extends State<ProposalTile> {
   late bool switchState;
 
   @override
@@ -35,8 +36,8 @@ class _PostTileState extends State<PostTile> {
     setState(() {
       switchState = newValue;
     });
-    widget.onSwitchChanged(
-        newValue); // Ensure this callback is correctly implemented
+    // widget.onSwitchChanged(
+    //     newValue); // Ensure this callback is correctly implemented
   }
 
   @override
@@ -44,14 +45,13 @@ class _PostTileState extends State<PostTile> {
     return Container(
       margin: const EdgeInsets.all(8),
       child: Card(
-        shape: CustomCardShape(
-            cutHeight: 185, cutWidth: 105), // Use the custom card shape here
+        // Use the custom card shape here
         surfaceTintColor: Colors.transparent,
         elevation: 4.0,
         child: Stack(
           children: [
             Container(
-              width: 300,
+              width: 500,
               height: 300,
               padding: const EdgeInsets.all(16),
               decoration: const BoxDecoration(
@@ -63,54 +63,41 @@ class _PostTileState extends State<PostTile> {
                   // Bottom right is not rounded due to the cutout
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
                 children: [
-                  Text(
-                    widget.postName,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Text(widget.details),
+                  SizedBox(
+                    width: 300,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.proposalName,
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Text(widget.proposalDetails),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-            Positioned(
-              bottom: 15.0, // Align with the cutout
-              right: 20.0, // Align with the cutout
-              child: Material(
-                elevation: 6,
-                borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
-                  decoration: BoxDecoration(
-                    color: Colors.transparent ,
-                    border: Border.all( 
-                        color: const Color.fromARGB(82, 0, 0, 0), width: 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "Cast Value:",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 10),
-                      ),
-                      const Text("Yes"),
-                      RotatedBox(
-                        quarterTurns: 3,
-                        child: Switch(
-                          value: switchState,
-                          onChanged: _handleSwitchChanged,
+                      const CustomUserIcon(),
+                      Positioned(
+                        bottom: 15.0, // Align with the cutout
+                        right: 20.0, // Align with the cutout
+                        child: Material(
+                          elevation: 6,
+                          borderRadius: BorderRadius.circular(10),
+                          child: const VoteSwitch(),
                         ),
                       ),
-                      const Text('No'),
                     ],
-                  ),
-                ),
+                  )
+                ],
               ),
             ),
           ],
