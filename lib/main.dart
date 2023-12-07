@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'widgets/userIcon.dart';
-import 'utility/categorySlider.dart';
-import 'package:flutter_portfolio/widgets/proposals/proposalTile.dart';
+import 'views/landingPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'utility/introManger.dart';
+import 'utility/styleWrapper.dart';
 
 // ignore: unused_import
 import 'package:http/http.dart' as http;
@@ -13,6 +12,7 @@ void main() {
 }
 
 class DappVoteClub extends StatelessWidget {
+  
   const DappVoteClub({super.key});
 
   @override
@@ -58,8 +58,10 @@ class DappVoteClub extends StatelessWidget {
             // User is opening the app for the first time
             return const IntroScreenOnFirstOpen();
           } else {
-            return const LandingPage(
-              title: appName,
+            return const StyleWrapper( appBarTitle: appName,
+              child: LandingPage(
+                
+              ),
             ); // Replace with your main home screen widget
           }
         },
@@ -81,63 +83,3 @@ class IntroScreenOnFirstOpen extends StatelessWidget {
   }
 }
 
-class LandingPage extends StatelessWidget {
-  final String title;
-
-  const LandingPage({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    final themeData = Theme.of(context);
-    // Get the primary and secondary colors from the theme
-    final primaryColor = themeData.colorScheme.primary;
-    final secondaryColor = themeData.colorScheme.secondary;
-
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 75,
-        title: Text(title,
-            style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                  color: Theme.of(context).colorScheme.onSecondary,
-                )),
-        actions: const <Widget>[
-          CustomUserIcon(),
-        ],
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              secondaryColor,
-              Colors.white,
-            ],
-          ),
-        ),
-        child: Column(
-          children: <Widget>[
-            const CategorySlider(),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 10, // Number of ProposalTile widgets you want
-                itemBuilder: (context, index) {
-                  return ProposalTile(
-                    proposalAuthor: 'nate stevens',
-                    proposalName: "Proposal ${index + 1}",
-                    proposalDetails: "Details for Proposal ${index + 1}",
-                    isSwitchOn: false, // Initial switch state
-                    onSwitchChanged: (bool newValue) {
-                      // Handle switch state change
-                    },
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/routes/profilePage.dart';
+import 'package:flutter_portfolio/views/profilePage.dart';
 
 class CustomUserIcon extends StatelessWidget {
   const CustomUserIcon({super.key});
@@ -8,9 +8,13 @@ class CustomUserIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: Container(
+        
           padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-          child: const Icon(Icons.account_circle, color: Colors.black)),
-      onPressed: () {
+          child:const CircleAvatar(
+            radius: 50,
+            backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+            ),),
+            onPressed: () {
         // Navigate to the profile page
         Navigator.push(
           context,
