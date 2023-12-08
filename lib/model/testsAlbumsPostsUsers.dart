@@ -1,7 +1,5 @@
 
 
-Build your Post class and your UserClass here to get practice
-
 
 
 
