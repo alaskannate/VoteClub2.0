@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/utility/categorySlider.dart';
-import '../utility/styleWrapper.dart';
 
 class UserProfilePage extends StatelessWidget {
   final String? userName;
@@ -28,10 +27,7 @@ class UserProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return StyleWrapper(
-      appBarTitle: 'hello',
-      child: Expanded(
-        child: SingleChildScrollView(
+    return SingleChildScrollView(
           child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -65,15 +61,13 @@ class UserProfilePage extends StatelessWidget {
             
                       ],)
                     ),
-                    Row(children: [ Text('Active Campangin'), ],),
-                    CategorySlider(tileSize: TileSize.large),
-                    Container(width: 500, height: 2000, decoration: BoxDecoration(color: Color.fromARGB(0, 255, 193, 7)))
+                    const Row(children: [ Text('Active Campangin'), ],),
+                    const CategorySlider(tileSize: TileSize.large),
+                    Container(width: 500, height: 2000, decoration: const BoxDecoration(color: Color.fromARGB(0, 255, 193, 7)))
             
                   ],
                 ),
               ),
-        ),
-      ),
-    );
+        );
   }
 }

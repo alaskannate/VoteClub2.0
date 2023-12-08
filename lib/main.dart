@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'views/landingPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'utility/introManger.dart';
-import 'utility/styleWrapper.dart';
+import 'appWrapper.dart';
 
 // ignore: unused_import
 import 'package:http/http.dart' as http;
@@ -58,10 +58,7 @@ class DappVoteClub extends StatelessWidget {
             // User is opening the app for the first time
             return const IntroScreenOnFirstOpen();
           } else {
-            return const StyleWrapper( appBarTitle: appName,
-              child: LandingPage(
-                
-              ),
+            return const AppWrapper( appBarTitle: appName,
             ); // Replace with your main home screen widget
           }
         },

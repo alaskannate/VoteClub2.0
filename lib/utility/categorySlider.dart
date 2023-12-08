@@ -11,7 +11,7 @@ class CategorySlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80, // Adjust the height as needed
+      height: 120, // Adjust the height as needed
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
@@ -28,26 +28,30 @@ class CategorySlider extends StatelessWidget {
 enum TileSize { small, medium, large }
 
 Widget categoryTile(String categoryTitle, TileSize size) {
+  double padding;
   double fontSize;
   double avatarRadius;
 
   switch (size) {
     case TileSize.small:
-      fontSize = 10.0;
+      padding = 10.0;
+      fontSize = 12.0;
       avatarRadius = 12.0;
       break;
     case TileSize.medium:
-      fontSize = 12.0;
+      padding = 12.0;
+      fontSize = 16.0;
       avatarRadius = 16.0;
       break;
     case TileSize.large:
-      fontSize = 14.0;
-      avatarRadius = 20.0;
+      padding = 12.0;
+      fontSize = 20.0;
+      avatarRadius = 15.0;
       break;
   }
 
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+    padding:  EdgeInsets.symmetric(horizontal: padding),
     child: Chip(
       avatar: CircleAvatar(
         backgroundColor: Colors.grey.shade800,

@@ -87,8 +87,7 @@ class _ProposalTileState extends State<ProposalTile> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                     CustomUserIcon(),
-                     VoteSwitch(),
+                    VoteSwitch(),
                   ],
                 ),
               ],
