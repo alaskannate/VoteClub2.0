@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../widgets/customUserIcon.dart';
 import '/utility/categorySlider.dart';
-import '../widgets/proposalTile.dart';
+import '../widgets/proposal_item/proposal_tile.dart';
 
 
 class LandingPage extends StatelessWidget {

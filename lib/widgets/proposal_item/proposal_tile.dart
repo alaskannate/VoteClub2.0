@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'customUserIcon.dart';
-import 'voteSwitch.dart';
+import 'proposal_switch.dart';
 
 class ProposalTile extends StatefulWidget {
   final String proposalAuthor;
@@ -95,45 +94,6 @@ class _ProposalTileState extends State<ProposalTile> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class CustomCardShape extends ShapeBorder {
-  final double cutWidth;
-  final double cutHeight;
-
-  CustomCardShape({this.cutWidth = 40.0, this.cutHeight = 80.0});
-
-  @override
-  EdgeInsetsGeometry get dimensions => const EdgeInsets.all(0);
-
-  @override
-  Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
-    return getOuterPath(rect, textDirection: textDirection);
-  }
-
-  @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
-    Path path = Path()
-      ..moveTo(rect.left, rect.top)
-      ..lineTo(rect.right, rect.top)
-      ..lineTo(rect.right, rect.bottom - cutHeight)
-      ..lineTo(rect.right - cutWidth, rect.bottom - cutHeight)
-      ..lineTo(rect.right - cutWidth, rect.bottom)
-      ..lineTo(rect.left, rect.bottom)
-      ..close();
-    return path;
-  }
-
-  @override
-  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {}
-
-  @override
-  ShapeBorder scale(double t) {
-    return CustomCardShape(
-      cutWidth: cutWidth * t,
-      cutHeight: cutHeight * t,
     );
   }
 }
